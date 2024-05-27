@@ -53,6 +53,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::delete('/admin/apartments/destroy/{id}', [ApartmentController::class, 'destroy'])->name('admin.apartment.destroy');
     
     Route::get('/admin/fasilitasApart', [FasilitasController::class, 'index'])->name('admin.fasilitas.index');
+    Route::get('/admin/fasilitasApart/create', [FasilitasController::class, 'create'])->name('admin.fasilitas.create');
     Route::get('/admin/fasilitasApart/show/{id}', [FasilitasController::class, 'show'])->name('admin.fasilitas.show');
     Route::get('/admin/fasilitasApart/edit/{id}', [FasilitasController::class, 'edit'])->name('admin.fasilitas.edit');
     Route::delete('/admin/fasilitasApart/destroy/{id}', [FasilitasController::class, 'destroy'])->name('admin.fasilitas.destroy');
