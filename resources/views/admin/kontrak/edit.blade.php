@@ -2,7 +2,7 @@
 
 @section('title', 'Edit Kontrak')
 
-@section('content')
+@section('contents')
     <div class="container mx-auto py-8">
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <h2 class="text-2xl font-semibold mb-6">Edit Kontrak</h2>

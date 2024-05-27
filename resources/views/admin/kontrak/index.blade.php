@@ -10,6 +10,7 @@
                 <a href="{{ route('admin.kontrak.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Tambah Kontrak</a>
             </div>
             @if ($kontrak->count() > 0)
+            {{-- @dd($kontrak) --}}
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr>
@@ -19,7 +20,7 @@
                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal Mulai</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal Berakhir</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Biaya Sewa</th>
-                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 ">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,7 +30,7 @@
                                     <span class="text-gray-900 font-bold">{{ $item->id }}</span>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    {{ $item->unit ? $item->unit->nomor_unit : '-' }}
+                                    {{ $item->id_unit }}
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     {{ $item->penyewa ? $item->penyewa->nama : '-' }}
@@ -45,7 +46,8 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex justify-center">
-                                        <a href="{{ route('admin.kontrak.edit', $item->id) }}" class="text-gray-600 hover:text-gray-900 mr-3">Edit</a>
+                                        <a href="{{ route('admin.kontrak.show', $item->id) }}" class="text-gray-600 hover:text-blue-900 mr-3">Show</a>
+                                        <a href="{{ route('admin.kontrak.edit', $item->id) }}" class="text-gray-600 hover:text-yellow-900 mr-3">Edit</a>
                                         <form action="{{ route('admin.kontrak.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
