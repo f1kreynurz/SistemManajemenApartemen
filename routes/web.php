@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\PenyewaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,15 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/units/edit/{id}', [UnitController::class, 'edit'])->name('admin.unit.edit');
     Route::put('/admin/units/edit/{id}', [UnitController::class, 'update'])->name('admin.unit.update');
     Route::delete('/admin/units/destroy/{id}', [UnitController::class, 'destroy'])->name('admin.unit.destroy');
+    
+    Route::get('/admin/tenant', [PenyewaController::class, 'index'])->name('admin.penyewa.index');
+    Route::get('/admin/tenant/create', [PenyewaController::class, 'create'])->name('admin.penyewa.create');
+    Route::post('/admin/tenant/store', [PenyewaController::class, 'store'])->name('admin.penyewa.store');
+    Route::get('/admin/tenant/show/{id}', [PenyewaController::class, 'show'])->name('admin.penyewa.show');
+    Route::get('/admin/tenant/edit/{id}', [PenyewaController::class, 'edit'])->name('admin.penyewa.edit');
+    Route::put('/admin/tenant/edit/{id}', [PenyewaController::class, 'update'])->name('admin.penyewa.update');
+    Route::delete('/admin/tenant/destroy/{id}', [PenyewaController::class, 'destroy'])->name('admin.penyewa.destroy');
+
 
 
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin/home');
