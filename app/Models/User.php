@@ -31,4 +31,9 @@ class User extends Authenticatable
             get: fn ($value) =>  ["tenant", "admin"][$value],
         );
     }
+
+    public function penyewa()
+    {
+        return $this->hasOne(Penyewa::class, 'id_user');
+    }
 }

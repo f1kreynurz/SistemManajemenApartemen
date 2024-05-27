@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Unit;
 
 class Pemeliharaan extends Model
 {
@@ -17,4 +18,9 @@ class Pemeliharaan extends Model
     ];
 
     protected $table = 'pemeliharaan';
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'id_unit');
+    }
 }

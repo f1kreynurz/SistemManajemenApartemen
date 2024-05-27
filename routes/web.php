@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\UnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,14 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/fasilitasApart/edit/{id}', [FasilitasController::class, 'edit'])->name('admin.fasilitas.edit');
     Route::put('/admin/fasilitasApart/edit/{id}', [FasilitasController::class, 'update'])->name('admin.fasilitas.update');
     Route::delete('/admin/fasilitasApart/destroy/{id}', [FasilitasController::class, 'destroy'])->name('admin.fasilitas.destroy');
+    
+    Route::get('/admin/units', [UnitController::class, 'index'])->name('admin.unit.index');
+    Route::get('/admin/units/create', [UnitController::class, 'create'])->name('admin.unit.create');
+    Route::post('/admin/units/store', [UnitController::class, 'store'])->name('admin.unit.store');
+    Route::get('/admin/units/show/{id}', [UnitController::class, 'show'])->name('admin.unit.show');
+    Route::get('/admin/units/edit/{id}', [UnitController::class, 'edit'])->name('admin.unit.edit');
+    Route::put('/admin/units/edit/{id}', [UnitController::class, 'update'])->name('admin.unit.update');
+    Route::delete('/admin/units/destroy/{id}', [UnitController::class, 'destroy'])->name('admin.unit.destroy');
 
 
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin/home');

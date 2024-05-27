@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fasilitas;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 
 class FasilitasController extends Controller
@@ -17,15 +18,19 @@ class FasilitasController extends Controller
 
     public function create()
     {
-        return view('admin.fasilitas.create');
+        $apartments = Apartment::all(); // Mengambil semua data apartemen
+        return view('admin.fasilitas.create', compact('apartments'));
     }
-
 
     public function store(Request $request)
     {
         $request->validate([
+            'id_apartemen' => 'required|exists:apartments,id', // Validasi ID Apartemen
             'nama' => 'required|string|max:50',
             'deskripsi' => 'nullable|string',
+            'status' => 'required|string',
+            'jam_operasional' => 'nullable|string',
+            'kapasitas' => 'nullable|integer',
         ]);
 
         Fasilitas::create($request->all());

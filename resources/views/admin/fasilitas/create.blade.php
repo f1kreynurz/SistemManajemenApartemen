@@ -10,7 +10,14 @@
                 @csrf
                 <div class="mb-4">
                     <label for="id_apartemen" class="block text-gray-700 text-sm font-bold mb-2">ID Apartemen:</label>
-                    <input type="text" name="id_apartemen" id="id_apartemen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('id_apartemen') }}" placeholder="ID Apartemen" required>
+                    <select name="id_apartemen" id="id_apartemen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        <option value="">Pilih Apartemen</option>
+                        @foreach($apartments as $apartment)
+                            <option value="{{ $apartment->id }}" {{ old('id_apartemen') == $apartment->id ? 'selected' : '' }}>
+                                {{ $apartment->nama }}
+                            </option>
+                        @endforeach
+                    </select>
                     @error('id_apartemen')
                         <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p>
                     @enderror

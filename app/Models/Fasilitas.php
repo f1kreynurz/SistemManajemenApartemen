@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Apartment;
 
 class Fasilitas extends Model
 {
@@ -19,4 +20,9 @@ class Fasilitas extends Model
     ];
 
     protected $table = 'fasilitas';
+
+    public function apartment()
+    {
+        return $this->belongsTo(Apartment::class, 'id_apartemen');
+    }
 }
