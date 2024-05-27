@@ -24,9 +24,6 @@ use App\Http\Controllers\KontrakController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
 
 Route::get('/about', [UserController::class, 'about'])->name('about');
 
@@ -42,8 +39,14 @@ Route::controller(AuthController::class)->group(function () {
 
 // Normal Users Routes List
 Route::middleware(['auth', 'user-access:tenant'])->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [UserController::class, 'userprofile'])->name('profile');
+    Route::get('/tenant/create', [PenyewaController::class, 'createForTenant'])->name('tenant.create');
+    Route::post('/tenant/store', [PenyewaController::class, 'storeForTenant'])->name('tenant.store');
+    Route::get('/tenant/{id}', [PenyewaController::class, 'showForTenant'])->name('tenant.show');
 });
 
 // Admin Routes List

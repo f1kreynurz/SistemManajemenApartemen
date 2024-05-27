@@ -23,6 +23,14 @@ class PenyewaController extends Controller
         return view('admin.penyewa.create', compact('apartments', 'users'));
     }
 
+    public function createForTenant()
+    {
+        $apartments = Apartment::all();
+        $users = User::all(); 
+
+        return view('tenant.create', compact('apartments', 'users'));
+    }
+
 
     public function store(Request $request)
     {
@@ -41,6 +49,23 @@ class PenyewaController extends Controller
             ->with('success', 'Penyewa created successfully.');
     }
 
+    public function storeForTenant(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'nomor_telepon' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'pekerjaan' => 'required|string|max:255',
+            'id_apartemen' => 'required|integer',
+            'id_user' => 'required|integer'
+        ]);
+
+        Penyewa::create($request->all());
+
+        return redirect()->route('tenant.show', $request->id_user)
+            ->with('success', 'Penyewa created successfully.');
+    }
+
     public function show($id)
     {
         $penyewa = Penyewa::findOrFail($id);
@@ -49,6 +74,12 @@ class PenyewaController extends Controller
         }
 
         return view('admin.penyewa.show', compact('penyewa'));
+    }
+
+    public function showForTenant($id_user)
+    {
+        $penyewa = Penyewa::where('id_user', $id_user)->first();
+        return view('tenant.show', compact('penyewa'));
     }
 
     public function edit($id)
