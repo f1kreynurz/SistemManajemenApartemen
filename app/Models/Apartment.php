@@ -17,5 +17,5 @@ class Apartment extends Model
         'id_penyewa',
     ];
 
-    // protected $table = 'apartments';
+    protected $table = 'apartments';
 }

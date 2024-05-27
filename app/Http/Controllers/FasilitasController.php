@@ -77,8 +77,14 @@ class FasilitasController extends Controller
     
 
 
-    public function destroy(Fasilitas $fasilitas)
+    public function destroy($id)
     {
+        $fasilitas = Fasilitas::find($id);
+
+        if (!$fasilitas) {
+            return redirect()->route('admin.fasilitas.index')->with('error', 'Fasilitas not found.');
+        }
+
         $fasilitas->delete();
 
         return redirect()->route('admin.fasilitas.index')
