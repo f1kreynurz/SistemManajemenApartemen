@@ -2,7 +2,7 @@
 
 @section('title', 'Edit Fasilitas')
 
-@section('content')
+@section('contents')
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white shadow-md rounded my-6">
             <div class="bg-gray-200 px-6 py-4">
@@ -16,17 +16,11 @@
                     <table class="min-w-full bg-white">
                         <tbody>
                             <tr>
-                                <td class="py-2 px-4 border-b border-gray-300 font-semibold ">ID Apartemen</td>
-                                <td class="py-2 px-4 border-b border-gray-300">
-                                    <input id="id_apartemen" type="text" class="form-input w-full @error('id_apartemen') is-invalid @enderror" name="id_apartemen" value="{{ old('id_apartemen', $fasilitas->id_apartemen) }}" required readonly>
-                                    @error('id_apartemen')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </td>
+                                <td class="py-2 px-4 border-b border-gray-300 font-semibold">ID Apartemen</td>
+                                <td class="py-2 px-4 border-b border-gray-300">{{ $fasilitas->id_apartemen }}</td>
                             </tr>
-
                             <tr>
-                                <td class="py-2 px-4 border-b border-gray-300 font-semibold ">Nama</td>
+                                <td class="py-2 px-4 border-b border-gray-300 font-semibold">Nama</td>
                                 <td class="py-2 px-4 border-b border-gray-300">
                                     <input id="nama" type="text" class="form-input w-full @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama', $fasilitas->nama) }}" required autocomplete="nama" autofocus>
                                     @error('nama')
@@ -34,27 +28,28 @@
                                     @enderror
                                 </td>
                             </tr>
-
                             <tr>
                                 <td class="py-2 px-4 border-b border-gray-300 font-semibold">Deskripsi</td>
                                 <td class="py-2 px-4 border-b border-gray-300">
-                                    <textarea id="deskripsi" class="form-input w-full @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="3">{{ old('deskripsi', $fasilitas->deskripsi) }}</textarea>
+                                    <textarea id="deskripsi" class="form-textarea w-full @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="3">{{ old('deskripsi', $fasilitas->deskripsi) }}</textarea>
                                     @error('deskripsi')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
                                     @enderror
                                 </td>
                             </tr>
-
                             <tr>
                                 <td class="py-2 px-4 border-b border-gray-300 font-semibold">Status</td>
                                 <td class="py-2 px-4 border-b border-gray-300">
-                                    <input id="status" type="text" class="form-input w-full @error('status') is-invalid @enderror" name="status" value="{{ old('status', $fasilitas->status) }}">
+                                    <select id="status" class="form-select w-full @error('status') is-invalid @enderror" name="status">
+                                        <option value="Aktif" {{ old('status', $fasilitas->status) == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                                        <option value="Perbaikan" {{ old('status', $fasilitas->status) == 'Perbaikan' ? 'selected' : '' }}>Perbaikan</option>
+                                        <option value="Non Aktif" {{ old('status', $fasilitas->status) == 'Non Aktif' ? 'selected' : '' }}>Non Aktif</option>
+                                    </select>
                                     @error('status')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
                                     @enderror
                                 </td>
                             </tr>
-
                             <tr>
                                 <td class="py-2 px-4 border-b border-gray-300 font-semibold">Jam Operasional</td>
                                 <td class="py-2 px-4 border-b border-gray-300">
@@ -64,7 +59,6 @@
                                     @enderror
                                 </td>
                             </tr>
-
                             <tr>
                                 <td class="py-2 px-4 border-b border-gray-300 font-semibold">Kapasitas</td>
                                 <td class="py-2 px-4 border-b border-gray-300">
