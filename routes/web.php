@@ -54,8 +54,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     
     Route::get('/admin/fasilitasApart', [FasilitasController::class, 'index'])->name('admin.fasilitas.index');
     Route::get('/admin/fasilitasApart/create', [FasilitasController::class, 'create'])->name('admin.fasilitas.create');
+    Route::post('/admin/fasilitasApart/store', [FasilitasController::class, 'store'])->name('admin.fasilitas.store');
     Route::get('/admin/fasilitasApart/show/{id}', [FasilitasController::class, 'show'])->name('admin.fasilitas.show');
     Route::get('/admin/fasilitasApart/edit/{id}', [FasilitasController::class, 'edit'])->name('admin.fasilitas.edit');
+    Route::put('/admin/fasilitasApart/edit/{id}', [FasilitasController::class, 'update'])->name('admin.fasilitas.update');
     Route::delete('/admin/fasilitasApart/destroy/{id}', [FasilitasController::class, 'destroy'])->name('admin.fasilitas.destroy');
 
 

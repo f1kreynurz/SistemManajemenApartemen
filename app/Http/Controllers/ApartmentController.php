@@ -39,8 +39,8 @@ class ApartmentController extends Controller
 
     public function show($id)
     {
-        $apartment = Apartment::find($id);
-
+        $apartment = Apartment::findOrFail($id);
+        // var_dump($apartment);
         if (!$apartment) {
             return redirect()->route('admin.apartment.index')->with('error', 'Apartment not found.');
         }
@@ -49,26 +49,33 @@ class ApartmentController extends Controller
     }
 
 
-    public function edit(Apartment $apartment)
+    public function edit($id)
     {
+        $apartment = Apartment::findOrFail($id); // Ambil data apartment berdasarkan ID
+
         return view('admin.apartment.edit', compact('apartment'));
     }
 
 
-    public function update(Request $request, Apartment $apartment)
+    public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'nama' => 'required|string|max:50',
-            'alamat' => 'required|string|max:100',
-            'jumlah_lantai' => 'required|integer',
-            'jumlah_unit' => 'required|integer',
-            'id_penyewa' => 'nullable|integer',
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'jumlah_lantai' => 'required|numeric',
+            'jumlah_unit' => 'required|numeric',
+            'id_penyewa' => 'nullable|numeric',
         ]);
 
-        $apartment->update($request->all());
+        $apartment = Apartment::findOrFail($id);
+        $apartment->nama = $request->nama;
+        $apartment->alamat = $request->alamat;
+        $apartment->jumlah_lantai = $request->jumlah_lantai;
+        $apartment->jumlah_unit = $request->jumlah_unit;
+        $apartment->id_penyewa = $request->id_penyewa;
+        $apartment->save();
 
-        return redirect()->route('admin.apartment.index')
-            ->with('success', 'Apartment updated successfully');
+        return redirect()->route('admin.apartment.index')->with('success', 'Apartment berhasil diupdate.');
     }
 
     public function destroy($id)
