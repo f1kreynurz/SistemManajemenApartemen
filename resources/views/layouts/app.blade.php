@@ -11,6 +11,9 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        @import '~bootstrap-icons/font/bootstrap-icons.css';
+    </style>
 </head>
 
 <body>
@@ -117,14 +120,14 @@
                 <a href="{{ route('admin.apartment.index') }}">
                     <div
                         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-bookmark-fill"></i>
+                        <i class="bi bi-building"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Apartments</span>
                     </div>
                 </a>
                 <a href="{{ route('admin.fasilitas.index') }}">
                     <div
                         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-bookmark-fill"></i>
+                        <i class="bi bi-clipboard-data-fill"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Fasilitas</span>
                     </div>
                 </a>
@@ -140,6 +143,20 @@
                         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-person-fill"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Penyewa</span>
+                    </div>
+                </a>
+                <a href="{{ route('admin.pembayaran.index') }}">
+                    <div
+                        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                        <i class="bi bi-cash-stack"></i>
+                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Pembayaran</span>
+                    </div>
+                </a>
+                <a href="{{ route('admin.kontrak.index') }}">
+                    <div
+                        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                        <i class="bi bi-book-half"></i>
+                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Kontrak</span>
                     </div>
                 </a>
                 <a href="{{ route('admin/profile') }}">
